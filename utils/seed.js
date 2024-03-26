@@ -3,8 +3,10 @@ const connection = require("../config/connection");
 const { Thought, User } = require("../models");
 const { getRandomUsers, getRandomThoughtFromName } = require("./data");
 
+// Listen for errors
 connection.on("error", (err) => err);
 
+// Connect to the database and seed
 connection.once("open", async () => {
     console.log("Connected");
 
