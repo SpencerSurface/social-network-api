@@ -70,7 +70,22 @@ module.exports = {
     },
     async deleteThought(req, res) {
         try {
-
+            // Delete the thought
+            const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
+            // If the specified thought doesn't exist, respond with an error
+            if (!thought) {
+                return res.status(404).json({ message: "No thought with that ID" });
+            }
+            // Remove the thought from the corresponding user
+            const user = await User.findOneAndUpdate(
+                { username: thought.username },
+                { $pull: { thoughts: req.params.thoughtId }},
+                { new: true }
+            );
+            // If the specified user doesn't exist, respond with an error
+            if (!user) {
+                return res.status(404).json({ message: "Thought deleted, but no user with that username" });
+            }
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
