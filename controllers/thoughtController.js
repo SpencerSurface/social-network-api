@@ -114,7 +114,18 @@ module.exports = {
     },
     async removeReaction(req, res) {
         try {
-
+            // Remove the specified reaction from its thought
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $pull: { reactions: { reactionId: req.params.reactionId } } },
+                { runValidators: true, new: true }
+            );
+            // If the specified thought doesn't exist, respond with an error
+            if (!thought) {
+                return res.status(404).json({ message: "No thought with that ID" });
+            }
+            // Respond with the thought
+            return res.json(thought);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
