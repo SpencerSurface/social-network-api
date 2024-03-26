@@ -15,7 +15,14 @@ module.exports = {
     },
     async getSingleUser(req, res) {
         try {
-
+            // Find specified user
+            const user = await User.findOne({ _id: req.params.userId });
+            // If the specified user doesn't exist, respond with an error
+            if (!user) {
+                return res.status(404).json({ message: "No user with that ID" });
+            }
+            // Respond with the user
+            return res.json(user);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
