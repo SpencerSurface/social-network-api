@@ -30,7 +30,9 @@ module.exports = {
     },
     async createUser(req, res) {
         try {
-
+            // Create a new user and respond
+            const user = await User.create(req.body);
+            return res.json(user);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
