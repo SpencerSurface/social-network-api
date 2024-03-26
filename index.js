@@ -1,4 +1,4 @@
-// Import statements
+// Import
 const express = require("express");
 const db = require("/config/connection");
 const routes = require("/routes");
@@ -16,5 +16,5 @@ app.use(routes);
 db.once("open", () => {
     app.listen(PORT, () => {
         console.log(`API server listening on port ${PORT}`);
-    })
-})
+    });
+});
