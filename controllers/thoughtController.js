@@ -86,6 +86,8 @@ module.exports = {
             if (!user) {
                 return res.status(404).json({ message: "Thought deleted, but no user with that username" });
             }
+            // Respond with the thought
+            return res.json(thought);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
@@ -93,7 +95,18 @@ module.exports = {
     },
     async addReaction(req, res) {
         try {
-
+            // Add a reaction to the specified thought
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $addToSet: { reactions: req.body } },
+                { runValidators: true, new: true }
+            );
+            // If the specified thought doesn't exist, respond with an error
+            if (!thought) {
+                return res.status(404).json({ message: "No thought with that ID" });
+            }
+            // Respond with the thought
+            return res.json(thought);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
