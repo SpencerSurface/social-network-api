@@ -19,7 +19,7 @@ module.exports = {
             const thought = await Thought.findOne({_id: req.params.thoughtId});
             // If the specified thought doesn't exist, respond with an error
             if (!thought) {
-                return res.status(404).json({message: "No thought with that ID"});
+                return res.status(404).json({ message: "No thought with that ID" });
             }
             // Respond with the thought
             return res.json(thought);
@@ -40,7 +40,7 @@ module.exports = {
             );
             // If the specified user doesn't exist, respond with an error
             if (!user) {
-                return res.status(404).json({message: "Thought created, but no user with that username"});
+                return res.status(404).json({ message: "Thought created, but no user with that username" });
             }
             // Respond with the thought
             return res.json(thought);
@@ -51,7 +51,18 @@ module.exports = {
     },
     async updateThought(req, res) {
         try {
-
+            // Update the thought
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $set: req.body },
+                { runValidators: true, new: true }
+            );
+            // If the specified thought doesn't exist, respond with an error
+            if (!thought) {
+                return res.status(404).json({ message: "No thought with that ID" });
+            }
+            // Respond with the thought
+            return res.json(thought);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
