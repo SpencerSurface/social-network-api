@@ -29,7 +29,7 @@ const thoughtSchema = new Schema(
     }
 );
 
-// Create the though model from the thought schema
+// Create the thought model from the thought schema
 const Thought = model("thought", thoughtSchema);
 
 // Export

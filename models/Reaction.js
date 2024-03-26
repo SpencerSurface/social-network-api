@@ -27,7 +27,7 @@ const reactionSchema = new Schema(
     {
         // Include the getter method
         toJSON: {getters: true},
-        // Don't automatically generate ids
+        // Don't add ids
         id: false
     }
 );
