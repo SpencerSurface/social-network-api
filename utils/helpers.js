@@ -1,3 +1,8 @@
+const monthName = (num) => {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return months[num];
+}
+
 module.exports = {
     formatDate: (date) => {
         // Get the hour from the date
@@ -7,6 +12,6 @@ module.exports = {
         hours = hours >= 12 ? hours - 12 : hours;
         hours = hours === 0 ? 12 : hours;
         // Return the formatted date string
-        return `${date.getMonth().slice(0, 3)} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${date.getMinutes()} ${period}`
+        return `${monthName(date.getMonth())} ${date.getDate()}, ${date.getFullYear()} at ${hours}:${date.getMinutes()} ${period}`
     }
 }
