@@ -1,6 +1,6 @@
 // Import
 const { Schema, model } = require("mongoose");
-const { reactionSchema } = require("./Reaction");
+const reactionSchema = require("./Reaction");
 const { formatDate } = require("../utils/helpers");
 
 // Define the thought schema
