@@ -25,7 +25,10 @@ const thoughtSchema = new Schema(
     },
     {
         // Include the getter method
-        toJSON: {getters: true}
+        toJSON: {
+            getters: true,
+            virtuals: true
+        }
     }
 );
 
