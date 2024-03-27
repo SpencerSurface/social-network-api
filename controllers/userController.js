@@ -16,7 +16,7 @@ module.exports = {
     async getSingleUser(req, res) {
         try {
             // Find specified user
-            const user = await User.findOne({ _id: req.params.userId });
+            const user = await User.findOne({ _id: req.params.userId }).populate("thoughts");
             // If the specified user doesn't exist, respond with an error
             if (!user) {
                 return res.status(404).json({ message: "No user with that ID" });
