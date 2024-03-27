@@ -59,10 +59,10 @@ const reactionBodies = [
 // Get a random item from an array
 const getRandomFromArray = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Get a random username (format: name followed by 2-6 digits)
+// Get a random username (format: name followed by 6 digits)
 const getRandomUserName = () => {
     let name = getRandomFromArray(names);
-    for (let i = 0; i < Math.floor(Math.random() * 5 + 2); i++) {
+    for (let i = 0; i < 6; i++) {
         name += Math.floor(Math.random() * 10);
     }
     return name;
