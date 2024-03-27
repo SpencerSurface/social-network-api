@@ -60,7 +60,7 @@ module.exports = {
     async deleteUser(req, res) {
         try {
             // Delete the user
-            const user = await User.findOneAndRemove({ _id: req.params.userId });
+            const user = await User.findOneAndDelete({ _id: req.params.userId });
             // If the specified user doesn't exist, respond with an error
             if (!user) {
                 return res.status(404).json({ message: "No user with that ID" });
@@ -83,11 +83,11 @@ module.exports = {
                 { runValidators: true, new: true }
             );
             // If the specified user doesn't exist, respond with an error
-            if (!user) {
+            if (!friend) {
                 return res.status(404).json({ message: "No user with that ID" });
             }
             // Respond with the user
-            return res.json(user);
+            return res.json(friend);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
@@ -102,11 +102,11 @@ module.exports = {
                 { runValidators: true, new: true }
             );
             // If the specified user doesn't exist, respond with an error
-            if (!user) {
+            if (!friend) {
                 return res.status(404).json({ message: "No user with that ID" });
             }
             // Respond with the user
-            return res.json(user);
+            return res.json(friend);
         } catch(err) {
             console.error(err);
             return res.status(500).json(err);
