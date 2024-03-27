@@ -42,3 +42,4 @@ This project was entirely coded by myself, except where otherwise noted. Files f
 
 ## License
 
+This project is licensed under the GNU General Public License version 3. See [LICENSE](./LICENSE) for the full text of the license.
